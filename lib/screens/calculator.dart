@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './button.dart';
+import '../widgets/output.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -8,6 +8,17 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
+
+  String result = "";
+  String operation = "";
+  String operand1 = "";
+  String operand2 = "";
+
+void handlePressed(String value){
+  print(value);
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,58 +27,60 @@ class _CalculatorState extends State<Calculator> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
-              alignment: Alignment.bottomRight,
-              height: 150,
-              margin: const EdgeInsets.all(10.0),
-              child: Text(
-                "0",
-                style: TextStyle(
-                  fontSize: 50,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.right,
-              ),
-            ),
+            Output(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Button("7"),
-                Button("8"),
-                Button("9"),
-                Button("/"),
+                button("7"),
+                button("8"),
+                button("9"),
+                button("/"),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Button("6"),
-                Button("5"),
-                Button("4"),
-                Button("*"),
+                button("6"),
+                button("5"),
+                button("4"),
+                button("*"),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Button("3"),
-                Button("2"),
-                Button("1"),
-                Button("-"),
+                button("3"),
+                button("2"),
+                button("1"),
+                button("-"),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Button("CL"),
-                Button("0"),
-                Button("="),
-                Button("+"),
+                button("CL"),
+                button("0"),
+                button("="),
+                button("+"),
               ],
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget button(String value){
+    return Expanded(
+      child: MaterialButton(
+      height: 100,
+      child: Text(value,
+          style: TextStyle(fontSize: 20,)),
+      textColor: Colors.white,
+      color: Colors.black26,
+      onPressed: (){
+        print(value);
+      },
+    ));
   }
 }

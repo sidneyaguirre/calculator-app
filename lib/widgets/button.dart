@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+//import './output.dart';
 
 class Button extends StatelessWidget {
 
   final String number;
 
-  Button(this.number);
+  Button(this.number, Function() function(String number));
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,9 @@ class Button extends StatelessWidget {
           style: TextStyle(fontSize: 20,)),
       textColor: Colors.white,
       color: Colors.black26,
-      onPressed: (() => Text('message')),
+      onPressed: (){
+        return number;
+      },
     ));
   }
 }
