@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/output.dart';
+import '../operations/operations.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -8,16 +9,72 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-
   String result = "";
   String operation = "";
-  String operand1 = "";
-  String operand2 = "";
+  String firstOperand = "";
+  String secondOperand = "";
 
-void handlePressed(String value){
-  print(value);
-}
+  void resetState() {
+    setState(() {
+      result = "";
+      operation = "";
+      firstOperand = "";
+      secondOperand = "";
+    });
+  }
 
+  void handlePressed(String value) {
+    switch (value) {
+      case "/":
+        setState(() {
+          operation = value;
+          result = result + value;
+        });
+        break;
+      case "*":
+        print('multi');
+        setState(() {
+          operation = value;
+          result = result + value;
+        });
+        break;
+      case "-":
+        print('minus');
+        setState(() {
+          operation = value;
+          result = result + value;
+        });
+        break;
+      case "+":
+        print('adding');
+        setState(() {
+          operation = value;
+          result = result + value;
+        });
+        break;
+      case "CL":
+        print('clear');
+        break;
+      case "=":
+        print(firstOperand + " " + operation + " " + secondOperand);
+        add(firstOperand, secondOperand, operation);
+        print(result);
+        resetState();
+        break;
+      default:
+        if (operation == "") {
+          setState(() {
+            firstOperand = firstOperand + value;
+            result = result + value;
+          });
+        } else {
+          setState(() {
+            secondOperand = value;
+            result = result + value;
+          });
+        }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +127,18 @@ void handlePressed(String value){
     );
   }
 
-  Widget button(String value){
+  Widget button(String value) {
     return Expanded(
-      child: MaterialButton(
-      height: 100,
-      child: Text(value,
-          style: TextStyle(fontSize: 20,)),
-      textColor: Colors.white,
-      color: Colors.black26,
-      onPressed: (){
-        print(value);
-      },
-    ));
+        child: MaterialButton(
+            height: 100,
+            child: Text(value,
+                style: TextStyle(
+                  fontSize: 20,
+                )),
+            textColor: Colors.white,
+            color: Colors.black26,
+            onPressed: () {
+              this.handlePressed(value);
+            }));
   }
 }
