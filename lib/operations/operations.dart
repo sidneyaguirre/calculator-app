@@ -16,8 +16,8 @@ int multiply(String firstOperand, String secondOperand, String operation) {
   return multiplication;
 }
 
-int divide(String firstOperand, String secondOperand, String operation) {
-  int division = int.parse(firstOperand) + int.parse(secondOperand);
+double divide(String firstOperand, String secondOperand, String operation) {
+  double division = (double.parse(firstOperand)) / (double.parse(secondOperand));
   print(division);
   return division;
 }
