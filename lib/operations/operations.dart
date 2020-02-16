@@ -37,14 +37,14 @@ int multiply(String firstOperand, String secondOperand, String operation) {
   return multiplication;
 }
 
-double divide(String firstOperand, String secondOperand, String operation) {
-  double division = 0;
+int divide(String firstOperand, String secondOperand, String operation) {
+  int division = 0;
   if (firstOperand == "") {
-    division = (double.parse(secondOperand));
+    division = (int.parse(secondOperand));
   } else if (secondOperand == "") {
-    division = double.parse(firstOperand)*0;
+    division = int.parse(firstOperand)*0;
   } else {
-    division = (double.parse(firstOperand)) / (double.parse(secondOperand));
+    division = (int.parse(firstOperand)) ~/ (int.parse(secondOperand));
   }  
   print(division);
   return division;

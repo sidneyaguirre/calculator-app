@@ -57,9 +57,11 @@ class _CalculatorState extends State<Calculator> {
         break;
       case "=":
         print(firstOperand + " " + operation + " " + secondOperand);
-        
         setState(() {
-          result = result = operate(firstOperand, secondOperand, operation);;
+          result = result = operate(firstOperand, secondOperand, operation);
+          firstOperand = result;
+          secondOperand = "";
+          operation = "";
         }); 
 
         //print(result);
