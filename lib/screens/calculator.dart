@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/output.dart';
 import '../operations/operations.dart';
 
 class Calculator extends StatefulWidget {
@@ -9,14 +8,14 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  String result = "";
+  String result = "0";
   String operation = "";
   String firstOperand = "";
   String secondOperand = "";
 
   void resetState() {
     setState(() {
-      result = "";
+      result = "0";
       operation = "";
       firstOperand = "";
       secondOperand = "";
@@ -54,18 +53,23 @@ class _CalculatorState extends State<Calculator> {
         break;
       case "CL":
         print('clear');
+        resetState();
         break;
       case "=":
         print(firstOperand + " " + operation + " " + secondOperand);
-        operate(firstOperand, secondOperand, operation);
+        
+        setState(() {
+          result = result = operate(firstOperand, secondOperand, operation);;
+        }); 
+
         //print(result);
-        resetState();
+        //resetState();
         break;
       default:
         if (operation == "") {
           setState(() {
             firstOperand = firstOperand + value;
-            result = result + value;
+            result = value;
           });
         } else {
           setState(() {
@@ -84,7 +88,19 @@ class _CalculatorState extends State<Calculator> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Output(),
+            Container(
+              alignment: Alignment.bottomRight,
+              height: 150,
+              margin: const EdgeInsets.all(10.0),
+              child: Text(
+                result,
+                style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.right,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

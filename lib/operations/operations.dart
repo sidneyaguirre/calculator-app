@@ -1,23 +1,51 @@
 int add(String firstOperand, String secondOperand, String operation) {
-  int adding = int.parse(firstOperand) + int.parse(secondOperand);
+  int adding = 0;
+  if (firstOperand == "") {
+    adding = int.parse(secondOperand);
+  } else if (secondOperand == "") {
+    adding = int.parse(firstOperand);
+  } else {
+    adding = int.parse(firstOperand) + int.parse(secondOperand);
+  }
   print(adding);
   return adding;
 }
 
 int substract(String firstOperand, String secondOperand, String operation) {
-  int subtraction = int.parse(firstOperand) - int.parse(secondOperand);
+  int subtraction = 0;
+  if (firstOperand == "") {
+    subtraction = (int.parse(secondOperand) * (-1));
+  } else if (secondOperand == "") {
+    subtraction = int.parse(firstOperand);
+  } else {
+    subtraction = int.parse(firstOperand) - int.parse(secondOperand);
+  }
   print(subtraction);
   return subtraction;
 }
 
 int multiply(String firstOperand, String secondOperand, String operation) {
-  int multiplication = int.parse(firstOperand) * int.parse(secondOperand);
+  int multiplication = 0;
+  if (firstOperand == "") {
+    multiplication = (int.parse(secondOperand));
+  } else if (secondOperand == "") {
+    multiplication = int.parse(firstOperand)*0;
+  } else {
+    multiplication = int.parse(firstOperand) * int.parse(secondOperand);
+  }
   print(multiplication);
   return multiplication;
 }
 
 double divide(String firstOperand, String secondOperand, String operation) {
-  double division = (double.parse(firstOperand)) / (double.parse(secondOperand));
+  double division = 0;
+  if (firstOperand == "") {
+    division = (double.parse(secondOperand));
+  } else if (secondOperand == "") {
+    division = double.parse(firstOperand)*0;
+  } else {
+    division = (double.parse(firstOperand)) / (double.parse(secondOperand));
+  }  
   print(division);
   return division;
 }
@@ -28,23 +56,23 @@ int clear(String firstOperand, String secondOperand, String operation) {
   return adding;
 }
 
-void operate(String firstOperand, String secondOperand, String operation){
+String operate(String firstOperand, String secondOperand, String operation) {
   switch (operation) {
     case "/":
-       divide(firstOperand, secondOperand, operation);
-        break;
-      case "*":
-        print('multi');
-        multiply(firstOperand, secondOperand, operation);
-        break;
-      case "-":
-        print('minus');
-        substract(firstOperand, secondOperand, operation);
-        break;
-      case "+":
-        print('adding');
-        add(firstOperand, secondOperand, operation);
-        break;
+      return divide(firstOperand, secondOperand, operation).toString();
+      break;
+    case "*":
+      //print('multi');
+      return multiply(firstOperand, secondOperand, operation).toString();
+      break;
+    case "-":
+      //print('minus');
+      return substract(firstOperand, secondOperand, operation).toString();
+      break;
+    case "+":
+      //print('adding');
+      return add(firstOperand, secondOperand, operation).toString();
+      break;
     default:
   }
 }
