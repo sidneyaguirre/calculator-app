@@ -29,7 +29,7 @@ int multiply(String firstOperand, String secondOperand, String operation) {
   if (firstOperand == "") {
     multiplication = (int.parse(secondOperand));
   } else if (secondOperand == "") {
-    multiplication = int.parse(firstOperand)*0;
+    multiplication = int.parse(firstOperand) * 0;
   } else {
     multiplication = int.parse(firstOperand) * int.parse(secondOperand);
   }
@@ -40,12 +40,12 @@ int multiply(String firstOperand, String secondOperand, String operation) {
 int divide(String firstOperand, String secondOperand, String operation) {
   int division = 0;
   if (firstOperand == "") {
-    division = (int.parse(secondOperand));
+    division = division;
   } else if (secondOperand == "") {
-    division = int.parse(firstOperand)*0;
+    division = int.parse(firstOperand) * 0;
   } else {
     division = (int.parse(firstOperand)) ~/ (int.parse(secondOperand));
-  }  
+  }
   print(division);
   return division;
 }
@@ -62,17 +62,15 @@ String operate(String firstOperand, String secondOperand, String operation) {
       return divide(firstOperand, secondOperand, operation).toString();
       break;
     case "*":
-      //print('multi');
       return multiply(firstOperand, secondOperand, operation).toString();
       break;
     case "-":
-      //print('minus');
       return substract(firstOperand, secondOperand, operation).toString();
       break;
     case "+":
-      //print('adding');
       return add(firstOperand, secondOperand, operation).toString();
       break;
     default:
+      return "Syntax Error";
   }
 }

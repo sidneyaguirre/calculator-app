@@ -8,14 +8,14 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  String result = "0";
+  String output = "0";
   String operation = "";
   String firstOperand = "";
   String secondOperand = "";
 
   void resetState() {
     setState(() {
-      result = "0";
+      output = "0";
       operation = "";
       firstOperand = "";
       secondOperand = "";
@@ -27,28 +27,28 @@ class _CalculatorState extends State<Calculator> {
       case "/":
         setState(() {
           operation = value;
-          result = result + value;
+          output = output + value;
         });
         break;
       case "*":
         print('multi');
         setState(() {
           operation = value;
-          result = result + value;
+          output = output + value;
         });
         break;
       case "-":
         print('minus');
         setState(() {
           operation = value;
-          result = result + value;
+          output = output + value;
         });
         break;
       case "+":
         print('adding');
         setState(() {
           operation = value;
-          result = result + value;
+          output = output + value;
         });
         break;
       case "CL":
@@ -58,25 +58,26 @@ class _CalculatorState extends State<Calculator> {
       case "=":
         print(firstOperand + " " + operation + " " + secondOperand);
         setState(() {
-          result = result = operate(firstOperand, secondOperand, operation);
-          firstOperand = result;
-          secondOperand = "";
-          operation = "";
-        }); 
-
-        //print(result);
-        //resetState();
+          output = operate(firstOperand, secondOperand, operation);
+        });
+        if (output != "Syntax Error") {
+          setState(() {
+            firstOperand = output;
+            secondOperand = "";
+            operation = "";
+          });
+        }
         break;
       default:
         if (operation == "") {
           setState(() {
             firstOperand = firstOperand + value;
-            result = value;
+            output = value;
           });
         } else {
           setState(() {
             secondOperand = value;
-            result = result + value;
+            output = output + value;
           });
         }
     }
@@ -85,7 +86,7 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Calculator')),
+      appBar: AppBar(title: Text('Integer Calculator')),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,7 +96,7 @@ class _CalculatorState extends State<Calculator> {
               height: 150,
               margin: const EdgeInsets.all(10.0),
               child: Text(
-                result,
+                output,
                 style: TextStyle(
                   fontSize: 50,
                   color: Colors.white,
