@@ -76,7 +76,7 @@ class _CalculatorState extends State<Calculator> {
           });
         } else {
           setState(() {
-            secondOperand = value;
+            secondOperand = secondOperand + value;
             output = output + value;
           });
         }
